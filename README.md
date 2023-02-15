@@ -1,46 +1,46 @@
-# Development of Il2CppInspector is suspended
+# This isn't the Il2CppInspector you're looking for
 
-It is with great regret that I have to announce that development work on Il2CppInspector has been halted for the foreseeable future.
+[Il2CppInspector](https://github.com/djkaty/Il2CppInspector) is a complex and
+wonderful tool that was developed by [@djkaty](https://github.com/djkaty) until
+2021, when they had to cease work on the project. A number of others have
+contributed small fixes since as noted in
+[the original repository's pull requests](https://github.com/djkaty/Il2CppInspector/pulls).
+I've forked this project, applied a handful of those pull requests, and made a
+small number of other changes to suit my own needs and get rid of errors. This
+includes removing some functionality from Il2CppInspector (such as the GUI,
+which I don't use). This fork has also not been rigorously tested, and
+specifically no longer undergoes any testing in Visual Studio or on Windows or
+Linux. I don't recommend use of this fork, but rather you should refer to the
+original repository or go fork yourself.
 
-The reason for this is that due to health and changes in my personal life, I simply do not have time to commit to working on the project anymore. This is very frustrating for me but there is little I can really do about it.
+# Il2CppInspector
 
-Please feel free to fork the project and make improvements! You can also continue to post issues as I would like to have a compendium of bugs and problems saved in case that I or someone else does have the opportunity to get back to working on this. Please note though, that I won't be responding to issues or PRs going forward for the foreseeable future.
-
-If you need IL2CPP tooling, I recommend my friend and colleague's excellent project [Cpp2IL](https://github.com/SamboyCoding/Cpp2IL) which is a work-in-progress tool to convert IL2CPP binaries directly back into IL code which can be easily viewed in dnSpy etc. This is a mammoth task so please do go and support his work on this amazing project!
-
-Happy hacking,
-
-Katy.
-
-# Il2CppInspector 2021.1
-
-Il2CppInspector helps you to reverse engineer IL2CPP applications, providing the most complete analysis currently available.
-
-![Il2CppInspector GUI](docs/GUI_Preview.png)
+Il2CppInspector helps you to reverse engineer IL2CPP applications.
 
 ### Main features
 
-* Output IL2CPP type definitions, metadata and method pointers as **[C# stub code](#creating-c-prototypes)**
+- Output IL2CPP type definitions, metadata and method pointers as **[C# stub code](#creating-c-prototypes)**
 
-* Create **.NET assembly shim DLLs** containing the IL2CPP application structure and metadata for use in decompilers such as [ILSpy](https://github.com/icsharpcode/ILSpy), [dnSpy](https://github.com/dnSpy/dnSpy), Unity asset loading with [AssetStudio](https://github.com/Perfare/AssetStudio) or managed proxy generation with [Il2CppAssemblyUnhollower](https://github.com/knah/Il2CppAssemblyUnhollower)
+- Create **.NET assembly shim DLLs** containing the IL2CPP application structure and metadata for use in decompilers such as [ILSpy](https://github.com/icsharpcode/ILSpy), [dnSpy](https://github.com/dnSpy/dnSpy), Unity asset loading with [AssetStudio](https://github.com/Perfare/AssetStudio) or managed proxy generation with [Il2CppAssemblyUnhollower](https://github.com/knah/Il2CppAssemblyUnhollower)
 
-* Create **[C++ scaffolding](#creating-c-scaffolding-or-a-dll-injection-project)** for all types, methods, function pointers and API functions in an IL2CPP application for use in x64dbg, Cydia Substrate etc.
+- Create **[C++ scaffolding](#creating-c-scaffolding-or-a-dll-injection-project)** for all types, methods, function pointers and API functions in an IL2CPP application for use in x64dbg, Cydia Substrate etc.
 
-* Create **[IDA](#adding-metadata-to-your-ida-workflow) and [Ghidra](#adding-metadata-to-your-ghidra-workflow) Python scripts** to populate symbol, function and type information; includes API hooks to [implement scripts for other targets](#extending-il2cppinspectors-python-output-to-support-other-targets)
+- Create **[IDA](#adding-metadata-to-your-ida-workflow) and [Ghidra](#adding-metadata-to-your-ghidra-workflow) Python scripts** to populate symbol, function and type information; includes API hooks to [implement scripts for other targets](#extending-il2cppinspectors-python-output-to-support-other-targets)
 
-* Create Visual Studio **[C++ DLL injection projects](#dll-injection-workflow)** directly from IL2CPP files
+- Create Visual Studio **[C++ DLL injection projects](#dll-injection-workflow)** directly from IL2CPP files
 
-* Create Visual Studio **[C# code stub solutions](#creating-a-visual-studio-c-code-stubs-solution)** directly from IL2CPP files
+- Create Visual Studio **[C# code stub solutions](#creating-a-visual-studio-c-code-stubs-solution)** directly from IL2CPP files
 
-* Create **[JSON metadata](#generating-json-metadata)** with a complete address map directly from IL2CPP Files.
+- Create **[JSON metadata](#generating-json-metadata)** with a complete address map directly from IL2CPP Files.
 
-* Create **[IL2CPP binaries from arbitrary C# source code without a Unity project](#universal-il2cpp-build-utility)**
+- Create **[IL2CPP binaries from arbitrary C# source code without a Unity project](#universal-il2cpp-build-utility)**
 
-* **[Three major APIs](#using-the-apis-for-programmatic-analysis)** for use in your own custom static analysis projects for querying low level binary metadata, the .NET type model and the whole C++ application. These are also available as a [NuGet Package](https://www.nuget.org/packages/NoisyCowStudios.Il2CppInspector/).
+- **[Three major APIs](#using-the-apis-for-programmatic-analysis)** for use in your own custom static analysis projects for querying low level binary metadata, the .NET type model and the whole C++ application. These are also available as a [NuGet Package](https://www.nuget.org/packages/NoisyCowStudios.Il2CppInspector/).
 
-* **[Plugin SDK](#creating-plugins)** allows you to create custom plugins to extend Il2CppInspector's capabilities
+- **[Plugin SDK](#creating-plugins)** allows you to create custom plugins to extend Il2CppInspector's capabilities
 
-* Defeats certain types of obfuscation
+- Defeats certain types of obfuscation
+
   - Most types of packed PE files (Windows DLLs)
   - ROT encryption of API export names
   - Beebyte symbol obfuscation via automated differential analysis (requires [Beebyte Deobfuscator plugin](https://github.com/OsOmE1/Beebyte-Deobfuscator) and an earlier unobfuscated IL2CPP or Mono version of the title)
@@ -52,16 +52,15 @@ Il2CppInspector helps you to reverse engineer IL2CPP applications, providing the
   - For other supported obfuscated titles, see the list of [loader plugins](https://github.com/djkaty/Il2CppInspectorPlugins/tree/master/Loaders)
   - Deobfuscated metadata and binary files can be saved back to disk
 
-* Supports **all major file formats and processor architectures**
+- Supports **all major file formats and processor architectures**
 
-* Works on Windows, MacOS X and Linux. **Integrated GUI** for Windows users with drag & drop support
+- Works on Windows, MacOS X and Linux.
 
-* Tested with [every release of IL2CPP](#version-support) since Unity 5.3.0
-
+- Tested with [every release of IL2CPP](#version-support) since Unity 5.3.0
 
 ### Tutorials and Guides
 
-You can read more about how IL2CPP works in my series IL2CPP Reverse Engineering:
+You can read more about how IL2CPP works in djkaty's series on IL2CPP Reverse Engineering:
 
 #### How IL2CPP works
 
@@ -95,39 +94,39 @@ You can read more about how IL2CPP works in my series IL2CPP Reverse Engineering
 
 File format and architecture support:
 
-* Supports ELF (Android .so), PE (Windows .exe), Mach-O (Apple iOS/Mac), Universal Binary (Fat Mach-O) and FSELF (PlayStation 4 .prx/.sprx) file formats
-* Also supports single and split APK (Android), AAB (Android App Bundle), XAPK, Zip and decrypted IPA (iOS) application package files as input
-* Supports ELF files created from memory dumps
-* Supports Linux process maps + corresponding .bin files - such as those produced by GameGuardian - without the need to manually extract the IL2CPP binary
-* 32-bit and 64-bit support for all file formats
-* Supports ARMv7, Thumb-2, ARMv8 (A64), x86 and x64 architectures regardless of file format
-* Supports applications created with Unity 5.3.0 onwards (full IL2CPP version table below)
+- Supports ELF (Android .so), PE (Windows .exe), Mach-O (Apple iOS/Mac), Universal Binary (Fat Mach-O) and FSELF (PlayStation 4 .prx/.sprx) file formats
+- Also supports single and split APK (Android), AAB (Android App Bundle), XAPK, Zip and decrypted IPA (iOS) application package files as input
+- Supports ELF files created from memory dumps
+- Supports Linux process maps + corresponding .bin files - such as those produced by GameGuardian - without the need to manually extract the IL2CPP binary
+- 32-bit and 64-bit support for all file formats
+- Supports ARMv7, Thumb-2, ARMv8 (A64), x86 and x64 architectures regardless of file format
+- Supports applications created with Unity 5.3.0 onwards (full IL2CPP version table below)
 
 Nice to have:
 
-* Support for assemblies, classes, methods, constructors, fields, properties, enumerations, events, interfaces, structs, pointers, references, attributes, nested types, generic types, generic methods, generic constraints, default field values and default method parameter values
-* C# syntactic sugar for CTS value types, compiler-generated types, delegates, extension methods, operator overloading, indexers, user-defined conversion operators, explicit interface instantiations, finalizers, nullable types, unsafe contexts, fixed-size arrays, variable length argument lists, method hiding and escaped strings
-* Partition C# code output by namespace, assembly, class, full tree or single file; sort by index or type name; output flat or nested folder hierarchy. Each file includes the necessary `using` directives. Scope and type name conflicts are resolved automatically to produce code that compiles.
-* API function export processing for PE, ELF, Mach-O and SELF (PRX) binaries
-* Symbol table processing and name demangling for ELF and Mach-O binaries 
-* Relocation processing for ELF binaries
-* Automatically defeats certain basic obfuscation methods
-* Test chassis for automated integration testing of IL2CPP binaries
+- Support for assemblies, classes, methods, constructors, fields, properties, enumerations, events, interfaces, structs, pointers, references, attributes, nested types, generic types, generic methods, generic constraints, default field values and default method parameter values
+- C# syntactic sugar for CTS value types, compiler-generated types, delegates, extension methods, operator overloading, indexers, user-defined conversion operators, explicit interface instantiations, finalizers, nullable types, unsafe contexts, fixed-size arrays, variable length argument lists, method hiding and escaped strings
+- Partition C# code output by namespace, assembly, class, full tree or single file; sort by index or type name; output flat or nested folder hierarchy. Each file includes the necessary `using` directives. Scope and type name conflicts are resolved automatically to produce code that compiles.
+- API function export processing for PE, ELF, Mach-O and SELF (PRX) binaries
+- Symbol table processing and name demangling for ELF and Mach-O binaries
+- Relocation processing for ELF binaries
+- Automatically defeats certain basic obfuscation methods
+- Test chassis for automated integration testing of IL2CPP binaries
 
-Class library targets .NET Core 3.1. Built with Visual Studio 2019.
+Class library targets .NET Core 3.1.
 
 **NOTE**: Il2CppInspector is not a decompiler. It can provide you with the structure of an application and function addresses for every method so that you can easily jump straight to methods of interest in your disassembler. It does not attempt to recover the entire source code of the application.
 
 ### Build instructions
 
 ```
-git clone --recursive https://github.com/djkaty/Il2CppInspector
+git clone --recursive https://github.com/therealchjones/Il2CppInspector
 cd Il2CppInspector
 ```
 
 ##### Windows
 
-Build the CLI and Windows GUI versions:
+Build the CLI version:
 
 ```
 dotnet publish -c Release
@@ -169,18 +168,15 @@ Get all current plugins (optional):
 ../get-plugins.sh
 ```
 
-For other operating systems supporting .NET Core, add  `-r xxx` to the final command where `xxx` is a RID from https://docs.microsoft.com/en-us/dotnet/articles/core/rid-catalog
+For other operating systems supporting .NET Core, add `-r xxx` to the final command where `xxx` is a RID from https://docs.microsoft.com/en-us/dotnet/articles/core/rid-catalog
 
-The output binary for command-line usage is placed in `Il2CppInspector/Il2CppInspector.CLI/bin/Release/netcoreapp3.0/[win|osx|linux]-x64/publish/Il2CppInspector.exe`.
-
-The output binary for Windows GUI is placed in `Il2CppInspector/Il2CppInspector.GUI/bin/Release/netcoreapp3.1/[win|osx|linux]-x64/publish/Il2CppInspector.exe`.
+The output binary for command-line usage is placed in `Il2CppInspector/Il2CppInspector.CLI/bin/Release/netcoreapp3.0/[win|osx|linux]-x64/publish/Il2CppInspector[.exe]`.
 
 The `plugins` folder should be placed in the same folder as `Il2CppInspector.exe`.
 
-
 ### Command-line Usage
 
-Run `Il2CppInspector.exe` at the command prompt.
+Run `Il2CppInspector.exe` or `Il2CppInspector` at the command prompt.
 
 File format and architecture are automatically detected.
 
@@ -252,11 +248,11 @@ All outputs are generated by default. To generate only specific outputs, use the
 
 ### File format considerations
 
-**Apple Universal Binaries and APKs/XAPKs with binaries for multiple architectures**: when using the CLI, multiple output files will be generated, with each filename besides the first suffixed by the index of the image in the binary. Unsupported images will be skipped.
+**Apple Universal Binaries and APKs/XAPKs with binaries for multiple architectures**: multiple output files will be generated, with each filename besides the first suffixed by the index of the image in the binary. Unsupported images will be skipped.
 
 **IPA packages**: the executable must be decrypted first. Encrypted executable binaries are not supported.
 
-**Split APK packages**: when using the CLI, specify a list of APK files with a comma between each filename.
+**Split APK packages**: specify a list of APK files with a comma between each filename.
 
 **ELF binaries created from memory dumps**: specify the image base (in hex) using `--image-base`. If the supplied image base is incorrect, the application may crash.
 
@@ -290,16 +286,16 @@ Providing an argument to `--exclude-namespaces` will override the default list. 
 
 You can specify the output layout with the `--layout` switch:
 
-* `single` - all types in a single file
-* `namespace` - one namespace per file (each file will be given the namespace name)
-* `assembly` - one assembly per file (each file will be given the assembly name)
-* `class` - one class per file
-* `tree` - one class per file in a tree-like folder structure with top-level assembly folders and second-level namespace folders
+- `single` - all types in a single file
+- `namespace` - one namespace per file (each file will be given the namespace name)
+- `assembly` - one assembly per file (each file will be given the assembly name)
+- `class` - one class per file
+- `tree` - one class per file in a tree-like folder structure with top-level assembly folders and second-level namespace folders
 
 You can specify the intra-file type ordering with the `--sort` switch:
 
-* `index` - sort by type definition index as found in the IL2CPP metadata
-* `name` - sort alphabetically by type name
+- `index` - sort by type definition index as found in the IL2CPP metadata
+- `name` - sort alphabetically by type name
 
 This switch has no effect when using `class` or `tree` layout.
 
@@ -389,53 +385,62 @@ Il2CppInspector performs automatic name conflict resolution to avoid the use of 
 
 Some IL2CPP binary files contain only a partial set of API exports, or none at all. For these cases, Il2CppInspector will build scaffolding using only the available exports to ensure that the project compiles successfully.
 
-![Il2CppInspector GUI](docs/Cpp_Preview.png)
-
 The following files are generated:
 
 - `appdata` - this folder contains project-agnostic binary-specific declarations:
-    - `ilc2pp-types.h`:
-      - Type declarations for all internal IL2CPP types (a minimal version of the Unity headers)
-      - Type declarations for every type used in the application including all arrays, enums, concrete generic type instances and inferred usages from metadata.
-      - Boxed versions for types where applicable
-      - VTables for every type
 
-    - `il2cpp-functions.h`:
-      - The function pointer signature and offset from the image base address to every C#-equivalent method
-      - The offset from the image base address to every method information class (`MethodInfo **`)
+  - `ilc2pp-types.h`:
 
-    - `il2cpp-types-ptr.h`:
-      - The offset from the image base address to every type information class (`Il2CppClass **`)
+    - Type declarations for all internal IL2CPP types (a minimal version of the Unity headers)
+    - Type declarations for every type used in the application including all arrays, enums, concrete generic type instances and inferred usages from metadata.
+    - Boxed versions for types where applicable
+    - VTables for every type
 
-    - `il2cpp-api-functions.h`:
-      - The function pointer signature to every IL2CPP API function (copied directly from Unity for the version used to compile the binary). Functions not found in the binary's export list will be elided
+  - `il2cpp-functions.h`:
 
-    - `il2cpp-api-functions-ptr.h`:
-      - The offset from the image base address to every IL2CPP API function export (functions starting with `il2cpp_`)
+    - The function pointer signature and offset from the image base address to every C#-equivalent method
+    - The offset from the image base address to every method information class (`MethodInfo **`)
 
-    - `il2cpp-metadata-version.h`:
-      - A `#define` for the IL2CPP version used by the target binary
+  - `il2cpp-types-ptr.h`:
+
+    - The offset from the image base address to every type information class (`Il2CppClass **`)
+
+  - `il2cpp-api-functions.h`:
+
+    - The function pointer signature to every IL2CPP API function (copied directly from Unity for the version used to compile the binary). Functions not found in the binary's export list will be elided
+
+  - `il2cpp-api-functions-ptr.h`:
+
+    - The offset from the image base address to every IL2CPP API function export (functions starting with `il2cpp_`)
+
+  - `il2cpp-metadata-version.h`:
+    - A `#define` for the IL2CPP version used by the target binary
 
 The above files contain all the data needed for dynamic analysis in a debugger.
 
 In addition, the following files are generated for DLL injection:
 
 - `framework` - project-agnostic binary-agnostic boilerplate code and scaffolding:
-    - `dllmain.cpp`:
-      - Provides a DLL injection stub which calls `init_il2cpp()` (see below) and starts `Run()` (see below) in a new thread
 
-    - `helpers.cpp` and `helpers.h`:
-      - Provides various helper functions. See the comments in `helpers.h` for details.
+  - `dllmain.cpp`:
 
-    - `il2cpp-init.cpp`, `il2cpp-init.h` and `il2cpp-appdata.h`:
-      - Provides the `void init_il2cpp()` function which uses all of the above headers to generate usable function pointers and class pointers that are mapped to the correct places in the in-memory image at runtime
+    - Provides a DLL injection stub which calls `init_il2cpp()` (see below) and starts `Run()` (see below) in a new thread
 
-    - `pch-il2cpp.cpp` and `pch-il2cpp.h`:
-      - Provides the necessary scaffolding to enable pre-compiled headers (PCH) for all of the headers in the `appdata` folder
+  - `helpers.cpp` and `helpers.h`:
+
+    - Provides various helper functions. See the comments in `helpers.h` for details.
+
+  - `il2cpp-init.cpp`, `il2cpp-init.h` and `il2cpp-appdata.h`:
+
+    - Provides the `void init_il2cpp()` function which uses all of the above headers to generate usable function pointers and class pointers that are mapped to the correct places in the in-memory image at runtime
+
+  - `pch-il2cpp.cpp` and `pch-il2cpp.h`:
+    - Provides the necessary scaffolding to enable pre-compiled headers (PCH) for all of the headers in the `appdata` folder
 
 - `user` - project-specific binary-agnostic user code which you can modify as desired:
-    - `main.cpp` and `main.h`:
-      - Contains a stub `Run()` function which denotes the entry point for your custom injected code. The function executes in a new thread and therefore does not block `DllMain`.
+
+  - `main.cpp` and `main.h`:
+    - Contains a stub `Run()` function which denotes the entry point for your custom injected code. The function executes in a new thread and therefore does not block `DllMain`.
 
   **This is the only folder whose files you should edit**.
 
@@ -479,7 +484,7 @@ void Run()
 }
 ```
 
-More detailed tutorials can be found here: 
+More detailed tutorials can be found here:
 
 [How to create, use and debug IL2CPP DLL injection projects](https://katyscode.wordpress.com/2020/11/27/il2cppinspector-tutorial-how-to-create-use-and-debug-il2cpp-dll-injection-projects/)
 
@@ -495,15 +500,15 @@ In order for Il2CppInspector to be able to create .csproj files which contain th
 
 NOTE: The default settings will select the latest installed version of Unity and the latest installed version of the default 3D project template, if they have been installed in the default location.
 
-Typical Unity editor location (specified with `--unity-path`): *C:\Program Files\Unity\Hub\Editor\20xx.y.z*
+Typical Unity editor location (specified with `--unity-path`): _C:\Program Files\Unity\Hub\Editor\20xx.y.z_
 
-Typical Unity project template location (specified with `--unity-assemblies`): *C:\Program Files\Unity\Hub\Editor\20xx.y.z\Editor\Data\Resources\PackageManager\ProjectTemplates\libcache\\\<name-of-template>*
+Typical Unity project template location (specified with `--unity-assemblies`): _C:\Program Files\Unity\Hub\Editor\20xx.y.z\Editor\Data\Resources\PackageManager\ProjectTemplates\libcache\\\<name-of-template>_
 
-Typical Unity script assemblies location in existing project (specified with `--unity-aseemblies`): *X:\MyProject\Library\ScriptAssemblies*
+Typical Unity script assemblies location in existing project (specified with `--unity-aseemblies`): _X:\MyProject\Library\ScriptAssemblies_
 
-Replace *x*, *y* and *z* with your Unity version number. Replace *\<name-of-template\>* with the desired template.
+Replace _x_, _y_ and _z_ with your Unity version number. Replace _\<name-of-template\>_ with the desired template.
 
-NOTE: You can use the asterisk wildcard (*) one or more times when specifying these paths. Il2CppInspector will select the last matching folder in alphanumeric order. This is useful if you have multiple side-by-side Unity installs and wish to always select the latest version or template.
+NOTE: You can use the asterisk wildcard (\*) one or more times when specifying these paths. Il2CppInspector will select the last matching folder in alphanumeric order. This is useful if you have multiple side-by-side Unity installs and wish to always select the latest version or template.
 
 In the event that the assembly references are not correctly resolved the first time you load a solution, simply close and re-open the solution to force them to be resolved.
 
@@ -520,76 +525,77 @@ The output schema is as follows:
 - `addressMap` (object)
 
   An address map of all IL2CPP-related content in binary
-    - `methodDefinitions` (array)
-      The virtual address, binary symbol, C++ function signature and .NET method signature of every .NET-equivalent method in the binary
 
-    - `constructedGenericMethods` (array)
-      The virtual address, binary symbol, C++ function signature and .NET method signature of every .NET-equivalent concrete generic method in the binary
+  - `methodDefinitions` (array)
+    The virtual address, binary symbol, C++ function signature and .NET method signature of every .NET-equivalent method in the binary
 
-    - `customAttributesGenerators` (array)
-      The virtual address, name and C++ function signature of every custom attributes generator function in the binary
+  - `constructedGenericMethods` (array)
+    The virtual address, binary symbol, C++ function signature and .NET method signature of every .NET-equivalent concrete generic method in the binary
 
-    - `methodInvokers` (array)
-      The virtual address, name and C++ function signature of every Method.Invoke thunk function in the binary
+  - `customAttributesGenerators` (array)
+    The virtual address, name and C++ function signature of every custom attributes generator function in the binary
 
-    - `stringLiterals` (array)
-      For Unity versions lower than 5.3.2: the ordinal, name and text of every string literal in the binary
-      For Unity version 5.3.2 and later: the virtual address, name and text of every string literal in the binary
+  - `methodInvokers` (array)
+    The virtual address, name and C++ function signature of every Method.Invoke thunk function in the binary
 
-    - `typeInfoPointers` (array)
-      The virtual address, name, C++ derived type name and .NET type name equivalent of every class definition pointer (`Il2CppClass *`) in the binary
+  - `stringLiterals` (array)
+    For Unity versions lower than 5.3.2: the ordinal, name and text of every string literal in the binary
+    For Unity version 5.3.2 and later: the virtual address, name and text of every string literal in the binary
 
-    - `typeRefPointers` (array)
-      The virtual address, name and .NET type name equivalent of every type reference pointer (`Il2CppType *`) in the binary
+  - `typeInfoPointers` (array)
+    The virtual address, name, C++ derived type name and .NET type name equivalent of every class definition pointer (`Il2CppClass *`) in the binary
 
-    - `methodInfoPointers` (array)
-      The virtual address, name and .NET method signature of every runtime method definition pointer (`MethodInfo *`) in the binary
+  - `typeRefPointers` (array)
+    The virtual address, name and .NET type name equivalent of every type reference pointer (`Il2CppType *`) in the binary
 
-    - `functionAddresses` (array)
-      The virtual addresses of the start of every known function in the binary, including all of those above plus any others detected but not included in the above categories
+  - `methodInfoPointers` (array)
+    The virtual address, name and .NET method signature of every runtime method definition pointer (`MethodInfo *`) in the binary
 
-    - `typeMetadata` (array)
-      The virtual address, name and C++ type name of key metadata items in the binary. This includes `Il2CppCodeRegistration` and `Il2CppMetadataRegistration`, and depending on the binary version may also include a pointer to each `Il2CppCodeGenModule`
+  - `functionAddresses` (array)
+    The virtual addresses of the start of every known function in the binary, including all of those above plus any others detected but not included in the above categories
 
-    - `arrayMetadata` (array)
-      The virtual address, name, C++ type name and size of key metadata arrays in the binary
+  - `typeMetadata` (array)
+    The virtual address, name and C++ type name of key metadata items in the binary. This includes `Il2CppCodeRegistration` and `Il2CppMetadataRegistration`, and depending on the binary version may also include a pointer to each `Il2CppCodeGenModule`
 
-    - `functionMetadata` (array)
-      The virtual address, name and C++ function signature of key metadata functions in the binary. Depending on how the binary was analyzed by Il2CppInspector, this may include `il2cpp_codegen_register`.
+  - `arrayMetadata` (array)
+    The virtual address, name, C++ type name and size of key metadata arrays in the binary
 
-    - `apis` (array)
-      The virtual address, name and C++ function signature of every IL2CPP API function identified in the binary
+  - `functionMetadata` (array)
+    The virtual address, name and C++ function signature of key metadata functions in the binary. Depending on how the binary was analyzed by Il2CppInspector, this may include `il2cpp_codegen_register`.
 
-    - `exports` (array)
-      The virtual address and name of every export in the binary
+  - `apis` (array)
+    The virtual address, name and C++ function signature of every IL2CPP API function identified in the binary
 
-    - `symbols` (array)
-      The virtual address, name and symbol type of every named (non-zero name length) and non-zero address function definition, type, field name and import (for ELF) defined in the binary. Not currently supported for PE files.
+  - `exports` (array)
+    The virtual address and name of every export in the binary
+
+  - `symbols` (array)
+    The virtual address, name and symbol type of every named (non-zero name length) and non-zero address function definition, type, field name and import (for ELF) defined in the binary. Not currently supported for PE files.
 
 ### Universal IL2CPP Build Utility
 
 Three Powershell scripts are provided to enable easy building and testing of IL2CPP binaries:
 
-* `il2cpp.ps1` is the main workhorse and compiles each specified C# source file in `TestSources` (or all of them if none supplied) as a separate assembly, and outputs them to `TestAssemblies`. It then takes every specified assembly in `TestAssemblies` and compiles each one as a separate IL2CPP project for each of these architectures:
+- `il2cpp.ps1` is the main workhorse and compiles each specified C# source file in `TestSources` (or all of them if none supplied) as a separate assembly, and outputs them to `TestAssemblies`. It then takes every specified assembly in `TestAssemblies` and compiles each one as a separate IL2CPP project for each of these architectures:
 
   - Windows x86 standalone
   - Windows x64 standalone
   - Android ARMv7 (32-bit)
   - Android ARMv8-A (64-bit)
-   
+
   These are placed into the `TestBinaries` folder. The C++ source code for each build is placed into the `TestCpp` folder. It then calls `generate-tests.ps1`.
 
   Specify a comma-separated list of source files (without the `.cs` extension) to process as the first argument (or `-assemblies`).
 
   You can optionally specify a Unity version or Unity install path with the 2nd argument (or `-unityVersion`). If none is supplied, the latest installed Unity version will be used. You can also specify wildcards, eg. `2019*` will use the latest installed version of Unity 2019, `2018.3*` will use the latest installed version of Unity 2018.3 etc. Use Unity Hub to install the desired versions.
 
-   Therefore with one command you can generate an assembly DLL, C++ source code and IL2CPP binary for each architecture for any given list of source files, one set of outputs per source file, for a specified version of Unity.
+  Therefore with one command you can generate an assembly DLL, C++ source code and IL2CPP binary for each architecture for any given list of source files, one set of outputs per source file, for a specified version of Unity.
 
-* `generate-tests.ps1` generates a file called `Tests.cs` in the `Il2CppTests` project, containing one test per IL2CPP project in `TestBinaries`. This file will be compiled by the `Il2CppTests` project. You will then be able to see one test per IL2CPP project in Visual Studio's Test Explorer.
+- `generate-tests.ps1` generates a file called `Tests.cs` in the `Il2CppTests` project, containing one test per IL2CPP project in `TestBinaries`. This file will be compiled by the `Il2CppTests` project. You will then be able to see one test per IL2CPP project in Visual Studio's Test Explorer.
 
   The auto-generated tests generate C#, JSON and C header files in the test IL2CPP binary's folder in `TestBinaries` (each filename prefixed with `test`) and compares them (whitespace-insensitive) with the corresponding project name files in `TestExpectedResults`. In this way, you can check for files with known structure that the analysis is being performed correctly, or step through the analysis of specific binaries in the debugger without having to change the project's command-line arguments.
 
-* `update-expected-results.ps1` copies all of the output test results from `TestBinaries` into `TestExpectedResults`, therefore updating the files that will be used to verify correct test results.
+- `update-expected-results.ps1` copies all of the output test results from `TestBinaries` into `TestExpectedResults`, therefore updating the files that will be used to verify correct test results.
 
 Example uses:
 
@@ -619,9 +625,9 @@ To learn more about these features, see the section entitled **Using Il2CppInspe
 
 Il2CppInspector offers the following re-usable class library APIs:
 
-* **Il2CppInspector** - low-level access to the binary image and metadata
-* **TypeModel** - high-level .NET Reflection-like query API for all of the .NET types in the source project as a tree model
-* **AppModel** - access to all of the C++ types and methods, plus the IL2CPP API exports, with detailed address and offset data and mappings to their .NET equivalents
+- **Il2CppInspector** - low-level access to the binary image and metadata
+- **TypeModel** - high-level .NET Reflection-like query API for all of the .NET types in the source project as a tree model
+- **AppModel** - access to all of the C++ types and methods, plus the IL2CPP API exports, with detailed address and offset data and mappings to their .NET equivalents
 
 Use these APIs to easily query IL2CPP types, create new output modules and integrate Il2CppInspector with your own static analysis applications.
 
@@ -629,9 +635,9 @@ To utilize Il2CppInspector in your own projects, add a reference to `Il2CppInspe
 
 Include the following `using` directives:
 
-* `using Il2CppInspector` to use `Il2CppInspector`.
-* `using Il2CppInspector.Reflection` to use `TypeModel`.
-* `using Il2CppInspector.Model` to use `AppModel`.
+- `using Il2CppInspector` to use `Il2CppInspector`.
+- `using Il2CppInspector.Reflection` to use `TypeModel`.
+- `using Il2CppInspector.Model` to use `AppModel`.
 
 See the source code for further details or the tutorials above.
 
@@ -712,43 +718,46 @@ If you develop an API for a target that you think might be useful to others, ple
 
 ### Version support
 
-Unity version | IL2CPP version | Support
---- | --- | ---
-4.6.1+ | First release | Unsupported
-5.2.x | 15 | Unsupported
-5.3.0-5.3.1 | 16 | Working
-5.3.2 | 19 | Working
-5.3.3-5.3.4 | 20 | Working
-5.3.5-5.4.6 | 21 | Working
-5.5.0-5.5.6 | 22 | Working
-5.6.0-5.6.7 | 23 | Working
-2017.1.0-2018.2.21 | 24 | Working
-2018.3.0-2018.4.x | 24.1 | Working
-2019.1.0-2019.3.6 | 24.2 | Working
-2019.3.7-2019.4.14 | 24.3 | Working
-2019.4.15-2019.4.20 | 24.4 | Working
-2019.4.21-2019.4.x | 24.5 | Working
-2020.1.0-2020.1.10 | 24.3 | Working
-2020.1.11-2020.1.17 | 24.4 | Working
-2020.2.0-2020.2.3 | 27 | Working
-2020.2.4-2020.3.x | 27.1 | Working
-2021.1.0-2021.1.x | 27.2 | Partial
+| Unity version       | IL2CPP version | Support     |
+| ------------------- | -------------- | ----------- |
+| 4.6.1+              | First release  | Unsupported |
+| 5.2.x               | 15             | Unsupported |
+| 5.3.0-5.3.1         | 16             | Working     |
+| 5.3.2               | 19             | Working     |
+| 5.3.3-5.3.4         | 20             | Working     |
+| 5.3.5-5.4.6         | 21             | Working     |
+| 5.5.0-5.5.6         | 22             | Working     |
+| 5.6.0-5.6.7         | 23             | Working     |
+| 2017.1.0-2018.2.21  | 24             | Working     |
+| 2018.3.0-2018.4.x   | 24.1           | Working     |
+| 2019.1.0-2019.3.6   | 24.2           | Working     |
+| 2019.3.7-2019.4.14  | 24.3           | Working     |
+| 2019.4.15-2019.4.20 | 24.4           | Working     |
+| 2019.4.21-2019.4.x  | 24.5           | Working     |
+| 2020.1.0-2020.1.10  | 24.3           | Working     |
+| 2020.1.11-2020.1.17 | 24.4           | Working     |
+| 2020.2.0-2020.2.3   | 27             | Working     |
+| 2020.2.4-2020.3.x   | 27.1           | Working     |
+| 2021.1.0-2021.1.x   | 27.2           | Partial     |
 
 Please refer to the companion repository https://github.com/nneonneo/Il2CppVersions if you would like to track the changes between each IL2CPP release version.
 
 ### Problems
 
-If you have files that don't work or are in an unsupported format, please open a new issue on GitHub and attach a sample with details on the file format, and I'll try to add support. Include both the IL2CPP binary and `global-metadata.dat` in your submission.
-
-Please check the binary file in a disassembler to ensure that it is a plain IL2CPP binary before filing an issue. Il2CppInspector is not intended to handle packed, encrypted or obfuscated IL2CPP files.
+No support is provided for this fork. If you have files that don't work or are
+in an unsupported format, you may open a new [issue on GitHub](https://github.com/djkaty/Il2CppInspector/issues) (in the original
+repository) and attach a sample with details on the file format, and the
+community may be able to assist. Include both the IL2CPP binary and
+`global-metadata.dat` in your submission. Please check the binary file in a
+disassembler to ensure that it is a plain IL2CPP binary before filing an issue.
+Il2CppInspector is not intended to handle packed, encrypted or obfuscated IL2CPP
+files.
 
 ### Support
 
-If you found Il2CppInspector useful, you can really help support the project by making a small donation at http://paypal.me/djkaty!
+If you found Il2CppInspector useful, I recommend supporting the original author by making a donation at http://paypal.me/djkaty!
 
 You can also donate with bitcoin: 3FoRUqUXgYj8NY8sMQfhX6vv9LqR3e2kzz
-
-Much love! - Katy
 
 ### Acknowledgements
 
@@ -761,13 +770,13 @@ This project uses:
 
 - [MultiKeyDictionary](https://www.codeproject.com/Articles/32894/C-Multi-key-Generic-Dictionary) by Aron Weiler
 - [CxxDemangler](https://github.com/southpolenator/CxxDemangler) by Vuk Jovanovic
-- [CommandLineParser](https://github.com/commandlineparser/commandline) 
+- [CommandLineParser](https://github.com/commandlineparser/commandline)
 - [Ookii.Dialogs.Wpf](https://github.com/augustoproiete/ookii-dialogs-wpf)
 - [XamlAnimatedGif](https://github.com/XamlAnimatedGif/WpfAnimatedGif) by Thomas Levesque
 - [.NET Core Plugins](https://github.com/natemcmaster/DotNetCorePlugins) by Nate McMaster
 - [dnlib](https://github.com/0xd4d/dnlib) by 0xd4d
 
-Thanks to the following individuals whose code and research helped me develop this tool:
+Thanks to the following individuals whose code and research helped develop this tool:
 
 - Perfare - https://github.com/Perfare/Il2CppDumper
 - Jumboperson - https://github.com/Jumboperson/Il2CppDumper
@@ -789,8 +798,6 @@ The following books and documents were also very helpful:
 - [ARM Architecture Reference Manual ARMv8-A](https://developer.arm.com/docs/ddi0487/latest)
 - [Intel 64 and IA-32 Architectures Software Developer's Manual](https://www.intel.com/content/dam/www/public/us/en/documents/manuals/64-ia-32-architectures-software-developer-instruction-set-reference-manual-325383.pdf)
 - [Ghidra API documentation](https://ghidra.re/ghidra_docs/api/)
-
-Pizza spinner animation in the GUI made by Chris Gannon - https://gannon.tv/
 
 ### License
 
